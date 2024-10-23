@@ -574,7 +574,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             size: 30.0,
                           ),
                           onPressed: () async {
-                            const url = 'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/build/app/outputs/apk/release/app-release.apk';
+                            const url = 'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/assets/files/release/app-release.apk';
                             html.AnchorElement anchorElement = html.AnchorElement(href: url);
                             anchorElement.download = url;
                             anchorElement.click();
