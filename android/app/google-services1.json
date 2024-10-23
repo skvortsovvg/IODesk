@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922366990857",
+    "project_id": "iodesk-17676",
+    "storage_bucket": "iodesk-17676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922366990857:android:4ee413aba30217da3db6d8",
+        "android_client_info": {
+          "package_name": "com.mycompany.iodesk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIj9ICZ2Nk08c2I938zqLVqFMk-0fGvmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

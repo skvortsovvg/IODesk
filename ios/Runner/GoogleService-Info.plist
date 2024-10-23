@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDmRA_YtgB_Rae8tkAcE5QNMzRjHkfI4S0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>922366990857</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.iodesk</string>
+	<key>PROJECT_ID</key>
+	<string>iodesk-17676</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iodesk-17676.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:922366990857:ios:673ddd2e8a2ff96b3db6d8</string>
+</dict>
+</plist>
