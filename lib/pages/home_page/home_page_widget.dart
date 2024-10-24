@@ -116,7 +116,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       //   });
 
       // }
-      if (FFAppState().thisCurrentWeek.begins ==  null)
+      if (FFAppState().thisCurrentWeek.begins != weekStart())
       {
         dispose();
         context.pushNamed('Login');
@@ -286,7 +286,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     await authManager.signOut();
                                     GoRouter.of(context)
                                         .clearRedirectLocation();
-
+                                    
+                                    dispose();
                                     context.goNamedAuth(
                                         'Login', context.mounted);
                                   },

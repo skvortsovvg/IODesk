@@ -111,12 +111,11 @@ Future setData(CurrentWeekStruct week) async {
 }
 
 DateTime weekStart() {
-  var date = new DateTime.now();
-  date = DateTime(date.year, date.month, date.day);
+  var date = DateTime.now().endOfDay();
   if (date.weekday == 5 || date.weekday == 6 || date.weekday == 7) {
-    return date.subtract(Duration(days: date.weekday - 8));
+    return date.subtract(Duration(days: date.weekday - 8)).beginOfDay();
   } else {
-    return date.subtract(Duration(days: date.weekday - 1));
+    return date.subtract(Duration(days: date.weekday - 1)).beginOfDay();
   };
 }
 

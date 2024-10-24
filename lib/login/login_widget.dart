@@ -220,15 +220,10 @@ class _LoginWidgetState extends State<LoginWidget>
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'xcya3c3w' /* Вход */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF101213),
+                            child: const Text("Вход",
+                              style: TextStyle(
+                                    fontFamily: 'Calibri',
+                                    color: Color(0xFF101213),
                                     fontSize: 22.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
@@ -239,19 +234,14 @@ class _LoginWidgetState extends State<LoginWidget>
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '59ix97ao' /* Введите фамилию сотрудника */,
+                            child: const Text("Введите фамилию сотрудника",
+                              style: TextStyle(
+                                fontFamily: 'Calibri',
+                                color: Color(0xFF57636C),
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation2']!),
                           ),
@@ -503,9 +493,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                             //   return;
                                             // }
 
-                                            FFAppState().thisCurrentWeek =
-                                                actions.defineCurrentWeek();
-                                            setState(() {});
+                                            // FFAppState().thisCurrentWeek =
+                                            //     actions.defineCurrentWeek();
+                                            // setState(() {});
                                             setData(
                                                 FFAppState().thisCurrentWeek);
 
@@ -574,8 +564,10 @@ class _LoginWidgetState extends State<LoginWidget>
                             size: 30.0,
                           ),
                           onPressed: () async {
-                            const url = 'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/assets/files/app-release.apk';
-                            html.AnchorElement anchorElement = html.AnchorElement(href: url);
+                            const url =
+                                'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/assets/files/app-release.apk';
+                            html.AnchorElement anchorElement =
+                                html.AnchorElement(href: url);
                             anchorElement.download = url;
                             anchorElement.click();
                             // -------------------
@@ -654,8 +646,11 @@ class _LoginWidgetState extends State<LoginWidget>
                   ],
                 ),
               ),
-            const Padding(padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 0.0, 10.0, 10.0), child: Align(alignment: Alignment.bottomRight, child: Text('v.1.7')))],
+              const Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 10.0),
+                  child: Align(
+                      alignment: Alignment.bottomRight, child: Text('v.1.7.1')))
+            ],
           ),
         ),
       ),
