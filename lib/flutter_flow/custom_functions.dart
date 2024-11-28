@@ -27,9 +27,9 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/auth/firebase_auth/auth_util.dart';
-
+                                          
 Future setData(CurrentWeekStruct week) async {
-  
+
   // Get a reference to the Firestore database
   final firestore = FirebaseFirestore.instance;
   var docFilter;
@@ -110,14 +110,15 @@ Future setData(CurrentWeekStruct week) async {
   }
 }
 
-DateTime weekStart() {
-  var date = DateTime.now().endOfDay();
-  if (date.weekday == 5 || date.weekday == 6 || date.weekday == 7) {
-    return date.subtract(Duration(days: date.weekday - 8)).beginOfDay();
-  } else {
-    return date.subtract(Duration(days: date.weekday - 1)).beginOfDay();
-  };
-}
+// DateTime weekStart() {
+//   var date = DateTime.now().endOfDay();
+//   if (date.weekday == 5 || date.weekday == 6 || date.weekday == 7) {
+//     return date.subtract(Duration(days: date.weekday - 8));
+//   } else {
+//     return date.subtract(Duration(days: date.weekday - 1));
+//   }
+//   ;
+// }
 
 DateTime beginOfDay(DateTime date) {
   return DateTime(date.year, date.month, date.day);
@@ -144,15 +145,24 @@ extension DateConvertation on DateTime {
     return weekStart().subtract(Duration(days: 5)).noonOfDay();
   }
 
-  DateTime nextDayNoon() {
-    return this.subtract(Duration(days: -1)).noonOfDay();
+  DateTime nextDay() {
+    return this.subtract(Duration(days: -1)).beginOfDay();
   }
 
-  DateTime previousDayNoon() {
-    return this.subtract(Duration(days: 1)).noonOfDay();
+  DateTime previousDay() {
+    return this.subtract(Duration(days: 1)).beginOfDay();
   }
 
   DateTime dayOfWeek(int day) {
     return this.subtract(Duration(days: this.weekday - day)).beginOfDay();
+  }
+
+  DateTime weekStart() {
+    var date = this.endOfDay();
+    if (date.weekday == 5 || date.weekday == 6 || date.weekday == 7) {
+      return date.subtract(Duration(days: date.weekday - 8)).beginOfDay();
+    } else {
+      return date.subtract(Duration(days: date.weekday - 1)).beginOfDay();
+    };
   }
 }

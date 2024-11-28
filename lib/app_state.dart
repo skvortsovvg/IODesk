@@ -26,10 +26,16 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  CurrentWeekStruct _thisCurrentWeek = defineCurrentWeek();
+  CurrentWeekStruct _thisCurrentWeek = defineCurrentWeek(DateTime.now());
   CurrentWeekStruct get thisCurrentWeek => _thisCurrentWeek;
   set thisCurrentWeek(CurrentWeekStruct value) {
     _thisCurrentWeek = value;
+  }
+
+  CurrentWeekStruct _currentWeek = defineCurrentWeek(DateTime.now());
+  CurrentWeekStruct get currentWeek => _currentWeek;
+  set currentWeek(CurrentWeekStruct value) {
+    _currentWeek = value;
   }
 
   void updateThisCurrentWeekStruct(Function(CurrentWeekStruct) updateFn) {

@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
+import 'package:i_o_desk/components/loading_widget.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
@@ -116,14 +117,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       //   });
 
       // }
-      if (FFAppState().thisCurrentWeek.begins != weekStart())
-      {
-        dispose();
-        context.pushNamed('Login');
-        return;
-      }     
-      
-      actions.setNotificationOnDateTime(FFAppState().thisCurrentWeek.friday!.noonOfDay());
+      // if (FFAppState().thisCurrentWeek.begins != DateTime.now().weekStart()) {
+      //   dispose();
+      //   context.pushNamed('Login');
+      //   return;
+      // }
+
+      actions.setNotificationOnDateTime(
+          FFAppState().thisCurrentWeek.friday!.noonOfDay());
 
       // FFAppState().thisCurrentWeek = _model.thisCurrentWeek;
       // setState(() {});
@@ -224,14 +225,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Рабочая неделя: ${dateTimeFormat(
+                                      'Поточний робочий тиждень: ${dateTimeFormat(
                                         'dd.MM',
-                                        _model.thisCurrentWeek.begins,
+                                        FFAppState().thisCurrentWeek.begins,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       )}-${dateTimeFormat(
                                         'dd.MM',
-                                        _model.thisCurrentWeek.ends,
+                                        FFAppState().thisCurrentWeek.ends,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       )}',
@@ -244,8 +245,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 20.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 20.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => Text(
                                           valueOrDefault(
@@ -286,7 +288,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     await authManager.signOut();
                                     GoRouter.of(context)
                                         .clearRedirectLocation();
-                                    
+
                                     dispose();
                                     context.goNamedAuth(
                                         'Login', context.mounted);
@@ -303,12 +305,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 10.0, 0.0, 0.0),
                     child: Text(
                       key: const ValueKey('j'),
                       FFLocalizations.of(context).getText(
-                        'eej5tktd' /* Обеды */,
+                        'eej5tktd' /* Запис на обід  */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
@@ -318,6 +320,112 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                 ),
+                Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 10.0, 0.0, 10.0),
+                    child: SizedBox(
+                      width: 450,
+                      child: Row(
+                        // mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              fillColor: FlutterFlowTheme.of(context).accent1,
+                              icon: Icon(
+                                Icons.chevron_left_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (context) {
+                                    return const LoadingWidget();
+                                  },
+                                );
+                                
+                                FFAppState().currentWeek =
+                                    actions.defineCurrentWeek(FFAppState()
+                                        .currentWeek
+                                        .begins!
+                                        .subtract(const Duration(days: 7)));
+
+                                await setData(FFAppState().currentWeek);
+                                Navigator.of(context).pop();
+
+                                setState(() {});
+                              },
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              '${dateTimeFormat(
+                                'dd.MM',
+                                FFAppState().currentWeek.begins,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              )}-${dateTimeFormat(
+                                'dd.MM',
+                                FFAppState().currentWeek.ends,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              )}',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 20.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              fillColor: FlutterFlowTheme.of(context).accent1,
+                              icon: Icon(
+                                Icons.chevron_right_sharp,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (context) {
+                                    return const LoadingWidget();
+                                  },
+                                );
+                                
+                                FFAppState().currentWeek =
+                                    actions.defineCurrentWeek(FFAppState()
+                                        .currentWeek
+                                        .ends!
+                                        .subtract(const Duration(days: -1)));
+
+                                await setData(FFAppState().currentWeek);
+                                Navigator.pop(context);
+
+                                setState(() {});
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
                 Flexible(
                   child: Container(
                     constraints: const BoxConstraints(
@@ -334,7 +442,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             .where(
                               'day',
                               isGreaterThanOrEqualTo:
-                                  _model.thisCurrentWeek.begins,
+                                  FFAppState().currentWeek.begins,
+                            )
+                            .where(
+                              'day',
+                              isLessThan: FFAppState().currentWeek.ends,
                             ),
                         limit: 10,
                       ),
@@ -391,7 +503,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   ),
-                                  parameter4: listViewDinnersRecord.day!.beginOfDay(),
+                                  parameter4:
+                                      listViewDinnersRecord.day!.beginOfDay(),
                                   doc: listViewDinnersRecord.reference,
                                 ),
                               ),

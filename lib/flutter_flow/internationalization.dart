@@ -12,7 +12,7 @@ class FFLocalizations {
   static FFLocalizations of(BuildContext context) =>
       Localizations.of<FFLocalizations>(context, FFLocalizations)!;
 
-  static List<String> languages() => ['ru', 'en'];
+  static List<String> languages() => ['ua', 'ru', 'en'];
 
   static late SharedPreferences _prefs;
   static Future initialize() async =>
@@ -73,6 +73,7 @@ class FFLocalizations {
     'th',
     'uk',
     'vi',
+    'ua',
   };
 }
 
@@ -109,10 +110,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'xcya3c3w': {
       'ru': 'Вход',
+      'ua': 'Вхiд',
       'en': '',
     },
     '59ix97ao': {
       'ru': 'Введите фамилию сотрудника',
+      'ua': 'Введiть приiвище спiвробiтника',
       'en': '',
     },
     '9a8atn06': {
@@ -127,7 +130,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // HomePage
   {
     'eej5tktd': {
-      'ru': 'Обеды',
+      'ua': 'Запис на обід',
+      'ru': 'Обiди',
       'en': '',
     },
     'ml4kfm7g': {
@@ -142,49 +146,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
   },
-  // HomePageCopy
-  {
-    '6caieqv3': {
-      'ru': 'Обеды',
-      'en': '',
-    },
-    '31nhmkef': {
-      'ru': 'Развозка в пятницу',
-      'en': '',
-    },
-    'z1mkb36f': {
-      'ru': 'м. Лыбидская',
-      'en': '',
-    },
-    '2g1hwquy': {
-      'ru': 'утро, 8:30',
-      'en': '',
-    },
-    '4c5xi97m': {
-      'ru': 'вечер, 17:00',
-      'en': '',
-    },
-    'yynlex2z': {
-      'ru': 'м. Выдубичи',
-      'en': '',
-    },
-    'j297cxy6': {
-      'ru': 'утро, 8:30',
-      'en': '',
-    },
-    '7a269004': {
-      'ru': 'вечер, 17:00',
-      'en': '',
-    },
-    '6ebp2e5q': {
-      'ru': 'Home',
-      'en': '',
-    },
-  },
   // SetUpMenu
   {
     '20qixci0': {
       'ru': 'Введите название блюда...',
+      'ua': 'Введіть страву...',
       'en': '',
     },
     '8sffcois': {
@@ -200,6 +166,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'ragvawus': {
       'ru': 'Меню дня',
+      'ua': 'Меню дня',
       'en': '',
     },
   },

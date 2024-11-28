@@ -31,8 +31,8 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.thisCurrentWeek = actions.defineCurrentWeek();
-      FFAppState().currentDayMenu = functions.weekStart();
+      // FFAppState().thisCurrentWeek = actions.defineCurrentWeek(FFAppState().thisCurrentWeek.ends!.subtract(const Duration(days: -1)));
+      FFAppState().currentDayMenu = FFAppState().thisCurrentWeek.begins;
       setState(() {});
     });
 
@@ -124,27 +124,17 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
                               child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                // mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Align(
                                     alignment: const AlignmentDirectional(0.0, 1.0),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 35.0),
+                                          0.0, 0.0, 0.0, .0),
                                       child: Text(
-                                        'Рабочая неделя: ${dateTimeFormat(
-                                          'dd.MM',
-                                          _model.thisCurrentWeek?.begins,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        )}-${dateTimeFormat(
-                                          'dd.MM',
-                                          _model.thisCurrentWeek?.ends,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        )}',
+                                        'Поточний робочий тиждень:',
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -155,7 +145,26 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
                                             ),
                                       ),
                                     ),
-                                  ),
+                                  ), Text(
+                                        '${dateTimeFormat(
+                                          'dd.MM',
+                                          FFAppState().thisCurrentWeek.begins,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        )}-${dateTimeFormat(
+                                          'dd.MM',
+                                          FFAppState().thisCurrentWeek.ends,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        )}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 24.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w300,
+                                            ),)
                                 ],
                               ),
                             ),
@@ -211,26 +220,27 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          if (FFAppState().currentDayMenu ==
-                              _model.thisCurrentWeek?.monday) {
-                            FFAppState().currentDayMenu =
-                                _model.thisCurrentWeek?.thursday;
-                          } else {
-                            if (FFAppState().currentDayMenu ==
-                                _model.thisCurrentWeek?.tuesday) {
-                              FFAppState().currentDayMenu =
-                                  _model.thisCurrentWeek?.monday;
-                            } else {
-                              if (FFAppState().currentDayMenu ==
-                                  _model.thisCurrentWeek?.wednesday) {
-                                FFAppState().currentDayMenu =
-                                    _model.thisCurrentWeek?.tuesday;
-                              } else {
-                                FFAppState().currentDayMenu =
-                                    _model.thisCurrentWeek?.wednesday;
-                              }
-                            }
-                          }
+                          // if (FFAppState().currentDayMenu ==
+                          //     _model.thisCurrentWeek?.monday) {
+                          //   FFAppState().currentDayMenu =
+                          //       _model.thisCurrentWeek?.thursday;
+                          // } else {
+                          //   if (FFAppState().currentDayMenu ==
+                          //       _model.thisCurrentWeek?.tuesday) {
+                          //     FFAppState().currentDayMenu =
+                          //         _model.thisCurrentWeek?.monday;
+                          //   } else {
+                          //     if (FFAppState().currentDayMenu ==
+                          //         _model.thisCurrentWeek?.wednesday) {
+                          //       FFAppState().currentDayMenu =
+                          //           _model.thisCurrentWeek?.tuesday;
+                          //     } else {
+                          //       FFAppState().currentDayMenu =
+                          //           _model.thisCurrentWeek?.wednesday;
+                          //     }
+                          //   }
+                          // }
+                          FFAppState().currentDayMenu = FFAppState().currentDayMenu!.previousDay(); 
                           setState(() {});
                         },
                       ),
@@ -266,26 +276,27 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          if (FFAppState().currentDayMenu ==
-                              _model.thisCurrentWeek?.monday) {
-                            FFAppState().currentDayMenu =
-                                _model.thisCurrentWeek?.tuesday;
-                          } else {
-                            if (FFAppState().currentDayMenu ==
-                                _model.thisCurrentWeek?.tuesday) {
-                              FFAppState().currentDayMenu =
-                                  _model.thisCurrentWeek?.wednesday;
-                            } else {
-                              if (FFAppState().currentDayMenu ==
-                                  _model.thisCurrentWeek?.wednesday) {
-                                FFAppState().currentDayMenu =
-                                    _model.thisCurrentWeek?.thursday;
-                              } else {
-                                FFAppState().currentDayMenu =
-                                    _model.thisCurrentWeek?.monday;
-                              }
-                            }
-                          }
+                          // if (FFAppState().currentDayMenu ==
+                          //     _model.thisCurrentWeek?.monday) {
+                          //   FFAppState().currentDayMenu =
+                          //       _model.thisCurrentWeek?.tuesday;
+                          // } else {
+                          //   if (FFAppState().currentDayMenu ==
+                          //       _model.thisCurrentWeek?.tuesday) {
+                          //     FFAppState().currentDayMenu =
+                          //         _model.thisCurrentWeek?.wednesday;
+                          //   } else {
+                          //     if (FFAppState().currentDayMenu ==
+                          //         _model.thisCurrentWeek?.wednesday) {
+                          //       FFAppState().currentDayMenu =
+                          //           _model.thisCurrentWeek?.thursday;
+                          //     } else {
+                          //       FFAppState().currentDayMenu =
+                          //           _model.thisCurrentWeek?.monday;
+                          //     }
+                          //   }
+                          // }
+                          FFAppState().currentDayMenu = FFAppState().currentDayMenu!.nextDay(); 
                           setState(() {});
                         },
                       ),
@@ -296,7 +307,7 @@ class _SetUpMenuWidgetState extends State<SetUpMenuWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Container(
-                  width: MediaQuery.sizeOf(context).width * 0.6,
+                  width: MediaQuery.sizeOf(context).width * 0.7,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),

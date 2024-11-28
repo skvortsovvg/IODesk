@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-CurrentWeekStruct defineCurrentWeek() {
-  var ws = weekStart();
+CurrentWeekStruct defineCurrentWeek(DateTime date) {
+  var ws = date.weekStart();
   return CurrentWeekStruct.fromMap({
     "Begins": ws,
     "Monday": ws.dayOfWeek(1),

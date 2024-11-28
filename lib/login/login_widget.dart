@@ -14,8 +14,10 @@ import "package:universal_html/html.dart" as html;
 
 import 'package:flutter/foundation.dart';
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
+import 'package:i_o_desk/components/loading_widget.dart';
 
 const bool adminApp = false;
+const String version = 'v.1.8';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -220,7 +222,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
-                            child: const Text("Вход",
+                            child: const Text("Вхiд",
                               style: TextStyle(
                                     fontFamily: 'Calibri',
                                     color: Color(0xFF101213),
@@ -234,7 +236,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
-                            child: const Text("Введите фамилию сотрудника",
+                            child: const Text("Введіть прізвище співробітника",
                               style: TextStyle(
                                 fontFamily: 'Calibri',
                                 color: Color(0xFF57636C),
@@ -405,47 +407,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               //   child:
                                               //       CircularProgressIndicator(),
                                               // );
-
-                                              return Material(
-                                                color:
-                                                    Colors.black.withAlpha(150),
-                                                child: Center(
-                                                  child: Container(
-                                                    constraints:
-                                                        const BoxConstraints(
-                                                      minWidth: 200,
-                                                      minHeight: 200,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(16.0),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          SizedBox(height: 10),
-                                                          CircularProgressIndicator(),
-                                                          SizedBox(height: 10),
-                                                          Text(
-                                                            "Loading...",
-                                                            style: TextStyle(
-                                                                fontSize: 20),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
+                                              return const LoadingWidget();
                                             },
                                           );
                                           // if (!_model.loginProcessing) {
@@ -624,7 +586,7 @@ class _LoginWidgetState extends State<LoginWidget>
                     //     },
                     //   ),
                     // ),
-                    if (adminApp)
+                    // if (adminApp)
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 0.0, 10.0, 0.0),
@@ -649,7 +611,7 @@ class _LoginWidgetState extends State<LoginWidget>
               const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 10.0),
                   child: Align(
-                      alignment: Alignment.bottomRight, child: Text('v.1.7.1')))
+                      alignment: Alignment.bottomRight, child: Text(version)))
             ],
           ),
         ),

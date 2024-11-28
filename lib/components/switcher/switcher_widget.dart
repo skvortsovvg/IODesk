@@ -69,7 +69,7 @@ class _SwitcherWidgetState extends State<SwitcherWidget> {
             padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 30.0, 0.0),
             child: Switch.adaptive(
               value: _model.switchValue!,
-              onChanged: (DateTime.now().isAfter(widget.parameter4.previousDayNoon())) ? null :
+              onChanged: (DateTime.now().isAfter(widget.parameter4.previousDay().noonOfDay())) ? null :
               (newValue) async {
                 setState(() => _model.switchValue = newValue);
                 if (newValue) {
@@ -99,7 +99,7 @@ class _SwitcherWidgetState extends State<SwitcherWidget> {
               activeColor: Colors.deepPurpleAccent,
               activeTrackColor: FlutterFlowTheme.of(context).alternate,
               inactiveTrackColor: FlutterFlowTheme.of(context).alternate,
-              inactiveThumbColor: (DateTime.now().isAfter(widget.parameter4.previousDayNoon()))
+              inactiveThumbColor: (DateTime.now().isAfter(widget.parameter4.previousDay().noonOfDay()))
                   ? Colors.grey 
                   : FlutterFlowTheme.of(context).accent1,
             ),
