@@ -117,11 +117,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       //   });
 
       // }
-      // if (FFAppState().thisCurrentWeek.begins != DateTime.now().weekStart()) {
-      //   dispose();
-      //   context.pushNamed('Login');
-      //   return;
-      // }
+      if (currentUserReference == null) {
+        dispose();
+        context.pushNamed('Login');
+        return;
+      }
 
       actions.setNotificationOnDateTime(
           FFAppState().thisCurrentWeek.friday!.noonOfDay());
@@ -286,10 +286,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   onPressed: () async {
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signOut();
+                                    dispose();
                                     GoRouter.of(context)
                                         .clearRedirectLocation();
-
-                                    dispose();
                                     context.goNamedAuth(
                                         'Login', context.mounted);
                                   },

@@ -17,7 +17,7 @@ import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:i_o_desk/components/loading_widget.dart';
 
 const bool adminApp = false;
-const String version = 'v.1.8';
+const String version = 'v.1.8.22';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -183,7 +183,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         ),
                       ),
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
+                        // mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
@@ -257,12 +257,10 @@ class _LoginWidgetState extends State<LoginWidget>
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 0.0, 16.0, 16.0),
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisSize: MainAxisSize.max,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
+                              Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: SizedBox(
@@ -350,153 +348,149 @@ class _LoginWidgetState extends State<LoginWidget>
                                 ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Container(
-                              constraints: const BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
-                              decoration: const BoxDecoration(),
-                              child: Builder(
-                                builder: (context) {
-                                  final fnl = (_model.workersList
-                                              ?.map((e) => e)
-                                              .toList()
-                                              .where(
-                                                  (e) => valueOrDefault<bool>(
-                                                        (String searchText,
-                                                                String name) {
-                                                          return name
-                                                                  .toLowerCase()
-                                                                  .startsWith(
-                                                                      searchText
-                                                                          .toLowerCase()) &&
-                                                              searchText != "";
-                                                        }(
-                                                            _model
-                                                                .userFieldTextController
-                                                                .text,
-                                                            e.name),
-                                                        true,
-                                                      ))
-                                              .toList()
-                                              .toList() ??
-                                          [])
-                                      .take(5)
-                                      .toList();
-
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: fnl.length,
-                                    itemBuilder: (context, fnlIndex) {
-                                      final fnlItem = fnl[fnlIndex];
-                                      return InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (context) {
-                                              // return const Center(
-                                              //   child:
-                                              //       CircularProgressIndicator(),
-                                              // );
-                                              return const LoadingWidget();
-                                            },
-                                          );
-                                          // if (!_model.loginProcessing) {
-                                          // showModalBottomSheet<void>(
-                                          //     context: context,
-                                          //     isScrollControlled: true,
-                                          //     backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-                                          //     isDismissible: false,
-                                          //     builder: (BuildContext context) {
-                                          //       return Center(
-                                          //         child: Container(
-
-                                          //           height: 500,
-
-                                          //           color: const Color.fromARGB(184, 255, 255, 255),
-                                          //           child: Image.asset(
-                                          //               "images/loading.gif"),
-                                          //         ),
-                                          //       );
-                                          //     });
-                                          await actions.createFirebaseUser(
-                                            fnlItem.email,
-                                          );
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-
-                                          await authManager.signInWithEmail(
-                                            context,
-                                            fnlItem.email,
-                                            ("123456"),
-                                          );
-
-                                          if (currentUserReference != null) {
-                                            if (!(valueOrDefault(
-                                                    currentUserDocument?.name,
-                                                    '') !=
-                                                '')) {
-                                              await currentUserReference!
-                                                  .update(createUsersRecordData(
-                                                name: fnlItem.name,
-                                              ));
-                                            }
-                                            // } else {
-                                            //   _model.loginProcessing = false;
-                                            //   return;
-                                            // }
-
-                                            // FFAppState().thisCurrentWeek =
-                                            //     actions.defineCurrentWeek();
-                                            // setState(() {});
-                                            setData(
-                                                FFAppState().thisCurrentWeek);
-
-                                            context.pushNamedAuth(
-                                                'HomePage', context.mounted);
-                                            Navigator.pop(
-                                                context); //colse modal loading sheet
+                          Container(
+                            constraints: const BoxConstraints(
+                              maxWidth: 500.0,
+                            ),
+                            decoration: const BoxDecoration(),
+                            child: Builder(
+                              builder: (context) {
+                                final fnl = (_model.workersList
+                                            ?.map((e) => e)
+                                            .toList()
+                                            .where(
+                                                (e) => valueOrDefault<bool>(
+                                                      (String searchText,
+                                                              String name) {
+                                                        return name
+                                                                .toLowerCase()
+                                                                .startsWith(
+                                                                    searchText
+                                                                        .toLowerCase()) &&
+                                                            searchText != "";
+                                                      }(
+                                                          _model
+                                                              .userFieldTextController
+                                                              .text,
+                                                          e.name),
+                                                      true,
+                                                    ))
+                                            .toList()
+                                            .toList() ??
+                                        [])
+                                    .take(5)
+                                    .toList();
+                          
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: fnl.length,
+                                  itemBuilder: (context, fnlIndex) {
+                                    final fnlItem = fnl[fnlIndex];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (context) {
+                                            // return const Center(
+                                            //   child:
+                                            //       CircularProgressIndicator(),
+                                            // );
+                                            return const LoadingWidget();
+                                          },
+                                        );
+                                        // if (!_model.loginProcessing) {
+                                        // showModalBottomSheet<void>(
+                                        //     context: context,
+                                        //     isScrollControlled: true,
+                                        //     backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+                                        //     isDismissible: false,
+                                        //     builder: (BuildContext context) {
+                                        //       return Center(
+                                        //         child: Container(
+                          
+                                        //           height: 500,
+                          
+                                        //           color: const Color.fromARGB(184, 255, 255, 255),
+                                        //           child: Image.asset(
+                                        //               "images/loading.gif"),
+                                        //         ),
+                                        //       );
+                                        //     });
+                                        await actions.createFirebaseUser(
+                                          fnlItem.email,
+                                        );
+                                        GoRouter.of(context)
+                                            .prepareAuthEvent();
+                          
+                                        await authManager.signInWithEmail(
+                                          context,
+                                          fnlItem.email,
+                                          ("123456"),
+                                        );
+                          
+                                        if (currentUserReference != null) {
+                                          if (!(valueOrDefault(
+                                                  currentUserDocument?.name,
+                                                  '') !=
+                                              '')) {
+                                            await currentUserReference!
+                                                .update(createUsersRecordData(
+                                              name: fnlItem.name,
+                                            ));
                                           }
-                                        },
-                                        child: ListTile(
-                                          title: Text(
-                                            fnlItem.name,
-                                            style: const TextStyle(
-                                                fontFamily: 'Calibri',
-                                                fontSize: 24,
-                                                letterSpacing: 0.0),
-                                            // style: FlutterFlowTheme.of(context)
-                                            //     .titleLarge
-                                            //     // .override(
-                                            //     //   // fontFamily: 'Readex Pro',
-                                            //     //   letterSpacing: 0.0,
-                                            //     // ),
-                                          ),
-                                          trailing: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 20.0,
-                                          ),
-                                          tileColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          dense: false,
+                                          // } else {
+                                          //   _model.loginProcessing = false;
+                                          //   return;
+                                          // }
+                          
+                                          // FFAppState().thisCurrentWeek =
+                                          //     actions.defineCurrentWeek();
+                                          // setState(() {});
+                                          setData(
+                                              FFAppState().thisCurrentWeek);
+                          
+                                          context.pushNamedAuth(
+                                              'HomePage', context.mounted);
+                                          Navigator.pop(
+                                              context); //colse modal loading sheet
+                                        }
+                                      },
+                                      child: ListTile(
+                                        title: Text(
+                                          fnlItem.name,
+                                          style: const TextStyle(
+                                              fontFamily: 'Calibri',
+                                              fontSize: 24,
+                                              letterSpacing: 0.0),
+                                          // style: FlutterFlowTheme.of(context)
+                                          //     .titleLarge
+                                          //     // .override(
+                                          //     //   // fontFamily: 'Readex Pro',
+                                          //     //   letterSpacing: 0.0,
+                                          //     // ),
                                         ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 20.0,
+                                        ),
+                                        tileColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        dense: false,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -526,8 +520,8 @@ class _LoginWidgetState extends State<LoginWidget>
                             size: 30.0,
                           ),
                           onPressed: () async {
-                            const url =
-                                'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/assets/files/app-release.apk';
+                            const url = 'https://github.com/skvortsovvg/IODesk/raw/refs/heads/main/assets/files/app-release.apk';
+                                // 'https://raw.githubusercontent.com/skvortsovvg/IODesk/refs/heads/main/assets/files/app-release.apk';
                             html.AnchorElement anchorElement =
                                 html.AnchorElement(href: url);
                             anchorElement.download = url;

@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: const 
-      [ Locale('ua'),
+      [ 
         Locale('ru'),
         Locale('en'),
       ],
